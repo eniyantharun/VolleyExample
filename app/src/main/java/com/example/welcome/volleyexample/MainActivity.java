@@ -47,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private void sendRequestAndPrintResponse() {
         //mRequestQueue = Volley.newRequestQueue(this);
 
-        mCache = new DiskBasedCache(getCacheDir(),4*1024*1024);
+       /* mCache = new DiskBasedCache(getCacheDir(),4*1024*1024);
         mNetwork = new BasicNetwork(new HurlStack());
 
         mRequestQueue = new RequestQueue(mCache,mNetwork);
 
         mRequestQueue.start();
+        */
+       mRequestQueue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue(this.getApplicationContext());
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
